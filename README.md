@@ -179,60 +179,6 @@ def index():
     return render_template('index.html', title="DATA SCULPTOR – AI Driven Tool")
 
 
-# @app.route('/analyze', methods=['POST'])
-# def analyze():
-#     """Process uploaded file and analyze using AI-driven modules"""
-#     # Handle file upload
-#     if 'file' not in request.files or request.files['file'].filename == '':
-#         return "⚠️ Please upload a valid dataset file.", 400
-
-#     file = request.files['file']
-#     filename = secure_filename(file.filename)
-#     filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-#     file.save(filepath)
-
-#     # Load dataset
-#     try:
-#         df = pd.read_csv(filepath)
-#     except Exception:
-#         return "Error reading CSV. Ensure your file contains valid data.", 500
-
-#     # Step 1: Preprocessing & Data Cleaning
-#     df, missing, missing_percent, duplicates, invalid_dates = clean_data(df)
-
-#     # Step 2: AI-Driven Insight Extraction
-#     insights = generate_insights(df)
-
-#     # Step 3: Outlier Detection
-#     total_outliers, outlier_counts = detect_outliers(df)
-
-#     # Step 4: Visualization
-#     heatmap_file = save_heatmap(df)
-#     trend_plots = {
-#         col: save_trend_plot(df, col) for col in df.select_dtypes(include=['number']).columns
-#     }
-
-    
-
-#     return render_template('analyze.html',
-#                            title="Analysis Results – DATA SCULPTOR",
-#                            shape=df.shape,
-#                            columns=df.columns.tolist(),
-#                            missing=missing,
-#                            missing_percent=missing_percent,
-#                            duplicates=duplicates,
-#                            invalid_dates=invalid_dates,
-#                            insights=insights,
-#                            total_outliers=total_outliers,
-#                            outlier_counts=outlier_counts,
-#                            heatmap_file=heatmap_file,
-#                            trend_plots=trend_plots,
-#                            )
-
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
-
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
